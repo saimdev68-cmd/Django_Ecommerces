@@ -34,6 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
 
     list_filter = [
         "is_active",
+        'is_trending',
         "is_published",
         "category",
         "brand",

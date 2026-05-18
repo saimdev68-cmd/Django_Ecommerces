@@ -390,6 +390,27 @@ body {
     overflow: hidden;
 }
 
+.login-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d353c; /* Dark Slate link color */
+    text-decoration: none;
+    padding: 8px 18px;
+    border: 1px solid #ccd1d6;
+    border-radius: 4px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    display: inline-block;
+    line-height: 1;
+}
+
+.login-link:hover {
+    background-color: #348fe2;
+    color: #ffffff;
+    border-color: #348fe2;
+    box-shadow: 0 4px 10px rgba(52, 143, 226, 0.2);
+}
+
 .search-input {
     flex: 1;
     border: none;
@@ -902,6 +923,211 @@ body {
 
 @media (max-width: 460px) {
     .showcase-grid-track {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   UPDATED: HOT DEALS (SPOTLIGHT) SINGLE-LINE ROW SECTION
+   ========================================================================== */
+.spotlight-offers-container {
+    max-width: 1240px;
+    margin: 50px auto;
+    padding: 0 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.spotlight-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+.spotlight-main-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d353c;
+    margin: 0;
+}
+
+.spotlight-subtitle-text {
+    font-size: 13px;
+    color: #999999;
+    margin-top: 4px;
+}
+
+.spotlight-view-all-btn {
+    font-size: 13px;
+    font-weight: 700;
+    color: #348fe2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+.spotlight-view-all-btn:hover {
+    color: #2a72b5;
+}
+
+.spotlight-view-all-btn i {
+    transition: transform 0.2s;
+}
+
+.spotlight-view-all-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Force items onto a single line matching the standard grid structure */
+.spotlight-items-stream {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid #e2e7eb;
+    background-color: #e2e7eb;
+    border-radius: 4px;
+    gap: 1px;
+    overflow: hidden;
+}
+
+.spotlight-product-card {
+    background-color: #ffffff;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.spotlight-product-card:hover {
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Normalized height to keep image boxes perfectly balanced */
+.spotlight-media-canvas {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.spotlight-display-img {
+    max-width: 90%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.spotlight-product-card:hover .spotlight-display-img {
+    transform: scale(1.03);
+}
+
+.spotlight-discount-tag {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: #2d353c;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.spotlight-info-panel {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.spotlight-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d353c;
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+    min-height: 36px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.spotlight-item-snippet {
+    font-size: 12px;
+    color: #707478;
+    margin: 0 0 14px 0;
+    line-height: 1.4;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotlight-price-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    margin-top: auto;
+    margin-bottom: 16px;
+}
+
+.spotlight-sale-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00acac;
+}
+
+.spotlight-retail-price {
+    font-size: 11px;
+    color: #a8b2b9;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.spotlight-action-link {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #348fe2;
+    background-color: #ffffff;
+    border: 1px solid #348fe2;
+    text-align: center;
+    padding: 8px 0;
+    width: 100%;
+    display: block;
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.spotlight-product-card:hover .spotlight-action-link {
+    background-color: #348fe2;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(52, 143, 226, 0.2);
+}
+
+/* Responsive adjustment for row breaks */
+@media (max-width: 1200px) {
+    .spotlight-items-stream {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .spotlight-items-stream {
         grid-template-columns: 1fr;
     }
 }
