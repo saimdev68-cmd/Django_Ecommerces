@@ -1,0 +1,399 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock  %}</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <link rel="stylesheet" href="{% static "style1.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="/" class="header-brand">
+                <div class="brand-icon"></div>
+                <div class="brand-text-wrapper">
+                    <h1 class="brand-title"><span>Color</span>Admin</h1>
+                    <span class="brand-subtitle">e-commerce frontend theme</span>
+                </div>
+            </a>
+            <nav class="header-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>                   
+                    <li class="nav-item">
+                        <span class="nav-link">Our Store <i class="fa-solid fa-chevron-down"></i></span>
+                        <div class="dropdown-menu mega-menu">
+                            <div class="mega-col-border">
+                                <h3 class="mega-heading">Shop By Categories</h3>
+                                <ul class="mega-list">
+                                    {% for category in categories %}
+                                    <li><a href="#">{{category.name}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="mega-heading">Shop By Popular Phone</h3>
+                                <div class="products-columns-wrapper">
+        
+                                    <div class="phone-brand-col">
+                                        <ul class="mega-list">
+                                            <li><a href="#">iPhone 7</a></li>
+                                            <li><a href="#">iPhone 6s</a></li>
+                                            <li><a href="#">iPhone 6</a></li>
+                                            <li><a href="#">iPhone 5s</a></li>
+                                            <li><a href="#">iPhone 5</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="phone-brand-col">
+                                        <ul class="mega-list">
+                                            <li><a href="#">Galaxy S7</a></li>
+                                            <li><a href="#">Galaxy A9</a></li>
+                                            <li><a href="#">Galaxy J3</a></li>
+                                            <li><a href="#">Galaxy Note 5</a></li>
+                                            <li><a href="#">Galaxy S7 Edge</a></li> </ul>
+                                    </div>
+
+                                    <div class="phone-brand-col">
+                                        <ul class="mega-list">
+                                            <li><a href="#">Lumia 730</a></li>
+                                            <li><a href="#">Lumia 735</a></li>
+                                            <li><a href="#">Lumia 830</a></li>
+                                            <li><a href="#">Lumia 820</a></li>
+                                            <li><a href="#">Lumia Icon</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="phone-brand-col">
+                                        <ul class="mega-list">
+                                            <li><a href="#">Xperia X</a></li>
+                                            <li><a href="#">Xperia Z5</a></li>
+                                            <li><a href="#">Xperia M5</a></li>
+                                            <li><a href="#">Xperia C5</a></li>
+                                            <li><a href="#">Xperia C4</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <h3 class="mega-heading">Shop By Brand</h3>
+                                <div class="brands-row">
+                                    {% for brand in brands %}
+                                    <img src="{{brand.logo.url}}" alt="Apple" class="brand-logo-img">
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Accessories <i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="dropdown-menu standard-dropdown">
+                            {% for category in categories %}
+                            <li class="dropdown-item"><a href="#">{{category.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/new-arrivals/" class="nav-link">New Arrival</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Pages <i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="dropdown-menu standard-dropdown">
+                            <li class="dropdown-item"><a href="#">Home (Default)</a></li>
+                            <li class="dropdown-item"><a href="#">Home (Fixed Header)</a></li>
+                            <li class="dropdown-item"><a href="#">Home (Inverse Header)</a></li>
+                            <li class="dropdown-item"><a href="#">Search Results</a></li>
+                            <li class="dropdown-item"><a href="#">Product Page</a></li>
+                            <li class="dropdown-item"><a href="#">Product Details Page</a></li>
+                            <li class="dropdown-item"><a href="#">Checkout Cart</a></li>
+                            <li class="dropdown-item"><a href="#">Checkout Shipping</a></li>
+                            <li class="dropdown-item"><a href="#">Checkout Payment</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-actions">               
+                <div class="action-item">
+                    <button class="action-btn" id="searchToggleBtn" aria-label="Toggle Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <div class="dropdown-menu search-dropdown" id="searchDropdownMenu">
+                        <form action="/search/" method="GET" class="search-form-box">
+                            <input type="text" name="q" placeholder="Search" class="search-input" required>
+                            <button type="submit" class="search-submit-btn">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <button class="action-btn cart-toggle" id="cartToggleBtn" aria-label="View Shopping Bag">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="badge">2</span>
+                    </button>
+                    <div class="dropdown-menu cart-dropdown" id="cartDropdownMenu">
+                        <div class="cart-dropdown-header">Shopping Bag (2)</div>
+                        <ul class="cart-items-list">
+                            <li class="cart-prod-item">
+                                <div class="cart-img-box">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Ipad_Pro_Smart_Keyboard_and_Apple_Pencil.png" alt="iPad Pro">
+                                </div>
+                                <div class="cart-details">
+                                    <h4 class="cart-prod-name">iPad Pro Wi-Fi 128GB - Silver</h4>
+                                    <span class="cart-prod-price">$699.00</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove item"><i class="fa-solid fa-xmark"></i></button>
+                            </li>
+                            <li class="cart-prod-item">
+                                <div class="cart-img-box">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Imac-21-5-inch-late-2012.jpg" alt="iMac">
+                                </div>
+                                <div class="cart-details">
+                                    <h4 class="cart-prod-name">21.5-inch iMac</h4>
+                                    <span class="cart-prod-price">$1299.00</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove item"><i class="fa-solid fa-xmark"></i></button>
+                            </li>
+                        </ul>
+                        <div class="cart-dropdown-footer">
+                            <a href="/cart/" class="cart-btn cart-btn-view">View Cart</a>
+                            <a href="/checkout/" class="cart-btn cart-btn-checkout">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-divider"></div>
+                <div class="action-item">
+                    {% if user.is_authenticated %}
+                        <a href="/profile/" class="user-profile-link" title="My Account">
+                            <div class="avatar-frame">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="User Profile Picture">
+                            </div>
+                        </a>
+                    {% else %}
+                        <a href="#" class="auth-login-link">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block content %}{% endblock  %}
+
+    <footer class="site-footer">
+        
+        <div class="footer-top-bar">
+            <div class="footer-container top-bar-flex">
+                
+                <div class="newsletter-block">
+                    <h2 class="newsletter-title">LET'S STAY IN TOUCH</h2>
+                    <p class="newsletter-subtitle">Get updates on sales specials and more</p>
+                    <form action="#" method="POST" class="newsletter-form">
+                        <input type="email" placeholder="Enter Email Address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-submit-btn">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="social-block">
+                    <h2 class="social-title">FOLLOW US</h2>
+                    <p class="social-subtitle">We want to hear from you!</p>
+                    <div class="social-links-row">
+                        <a href="#" class="social-icon-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Google Plus"><i class="fa-brands fa-google-plus-g"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-main-content">
+            <div class="footer-container main-grid">
+                
+                <div class="footer-col">
+                    <h3 class="col-heading">ABOUT US</h3>
+                    <p class="about-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec tristique dolor, ac efficitur velit. Nulla lobortis tempus convallis. Nulla aliquam lectus eu porta pulvinar. Mauris semper justo erat.
+                    </p>
+                    <p class="about-text">
+                        Vestibulum porttitor lorem et vestibulum pharetra. Phasellus sit amet mi congue, hendrerit mi ut, dignissim eros.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="col-heading">RELATED LINKS</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="#">Shopping Help</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Payment Method</a></li>
+                        <li><a href="#">Sales & Refund</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                        <li><a href="#">Privacy & Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="col-heading">LATEST PRODUCT</h3>
+                    <ul class="footer-product-list">
+                        
+                        <li class="footer-product-item">
+                            <div class="prod-img-thumb">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/IPhone_6s_vector.svg" alt="Iphone 6s">
+                            </div>
+                            <div class="prod-meta-info">
+                                <h4 class="prod-title-link"><a href="#">Iphone 6s</a></h4>
+                                <span class="prod-price-tag">$1200.00</span>
+                            </div>
+                        </li>
+
+                        <li class="footer-product-item">
+                            <div class="prod-img-thumb">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S7_Edge.png" alt="Samsung Galaxy s7">
+                            </div>
+                            <div class="prod-meta-info">
+                                <h4 class="prod-title-link"><a href="#">Samsung Galaxy s7</a></h4>
+                                <span class="prod-price-tag">$850.00</span>
+                            </div>
+                        </li>
+
+                        <li class="footer-product-item">
+                            <div class="prod-img-thumb">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Ipad_Pro_Smart_Keyboard_and_Apple_Pencil.png" alt="Ipad Pro">
+                            </div>
+                            <div class="prod-meta-info">
+                                <h4 class="prod-title-link"><a href="#">Ipad Pro</a></h4>
+                                <span class="prod-price-tag">$800.00</span>
+                            </div>
+                        </li>
+
+                        <li class="footer-product-item">
+                            <div class="prod-img-thumb">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Samsung_Galaxy_Note_5.png" alt="Samsung Galaxy Note">
+                            </div>
+                            <div class="prod-meta-info">
+                                <h4 class="prod-title-link"><a href="#">Samsung Galaxy Not...</a></h4>
+                                <span class="prod-price-tag">$1200.00</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="col-heading">OUR CONTACT</h3>
+                    <address class="contact-address-info">
+                        <strong class="contact-company">Twitter, Inc.</strong><br>
+                        1355 Market Street, Suite 900<br>
+                        San Francisco, CA 94103<br>
+                        
+                        <div class="contact-methods-spacing">
+                            <span class="contact-row"><span class="contact-label">Phone:</span> (123) 456-7890</span>
+                            <span class="contact-row"><span class="contact-label">Fax:</span> (123) 456-7891</span>
+                            <span class="contact-row"><span class="contact-label">Email:</span> <a href="mailto:sales@myshop.com">sales@myshop.com</a></span>
+                            <span class="contact-row"><span class="contact-label">Skype:</span> <a href="skype:myshop?call">myshop</a></span>
+                        </div>
+                    </address>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom-base">
+            <div class="footer-container bottom-base-flex">
+                <p class="copyright-text">Copyright &copy; 2016 SeanTheme. All rights reserved.</p>
+                <div class="payment-methods-row">
+                    <div class="payment-badge card-amex">AMEX</div>
+                    <div class="payment-badge card-discover">DISCOVER</div>
+                    <div class="payment-badge card-visa">VISA</div>
+                    <div class="payment-badge card-mastercard">
+                        <span class="circle master-red"></span>
+                        <span class="circle master-orange"></span>
+                    </div>
+                    <div class="payment-badge card-secure">
+                        <span class="secure-text">0111 1100 0011 1111</span>
+                        <span class="secure-expiry">Expires 01/25</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        // Acquire element nodes securely
+        const searchToggle = document.getElementById('searchToggleBtn');
+        const searchMenu = document.getElementById('searchDropdownMenu');
+        const cartToggle = document.getElementById('cartToggleBtn');
+        const cartMenu = document.getElementById('cartDropdownMenu');
+
+        /**
+        * Toggles visibility state behaviors safely across target menu layouts
+        * @param {HTMLElement} button - The element trigger button 
+        * @param {HTMLElement} menuToOpen - Target dropdown panel toggled variable
+        * @param {HTMLElement} menuToClose - Opposite panel requiring forced execution close
+        */
+        function toggleMenu(button, menuToOpen, menuToClose) {
+            if (!button || !menuToOpen) return;
+
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Systematically hide alternative dashboard dropdown tracks to protect styling alignment
+                if (menuToClose) {
+                    menuToClose.style.opacity = '0';
+                    menuToClose.style.visibility = 'hidden';
+                    menuToClose.style.transform = 'translateY(10px)';
+                    menuToClose.style.pointerEvents = 'none';
+                }
+
+                const isVisible = menuToOpen.style.opacity === '1';
+                if (isVisible) {
+                    menuToOpen.style.opacity = '0';
+                    menuToOpen.style.visibility = 'hidden';
+                    menuToOpen.style.transform = 'translateY(10px)';
+                    menuToOpen.style.pointerEvents = 'none';
+                } else {
+                    menuToOpen.style.opacity = '1';
+                    menuToOpen.style.visibility = 'visible';
+                    menuToOpen.style.transform = 'translateY(0)';
+                    menuToOpen.style.pointerEvents = 'auto';
+                    
+                    // Intuitively execute automated focus tasks for direct typing optimization
+                    const inputField = menuToOpen.querySelector('input');
+                    if (inputField) {
+                        setTimeout(() => inputField.focus(), 100);
+                    }
+                }
+            });
+        }
+
+        // Initialize toggle actions securely across layout hooks
+        toggleMenu(searchToggle, searchMenu, cartMenu);
+        toggleMenu(cartToggle, cartMenu, searchMenu);
+
+        // Global document hook context to hide modules safely on standard outer canvas clicks
+        document.addEventListener('click', (e) => {
+            if (searchMenu && searchToggle && !searchMenu.contains(e.target) && !searchToggle.contains(e.target)) {
+                searchMenu.style.opacity = '0';
+                searchMenu.style.visibility = 'hidden';
+                searchMenu.style.transform = 'translateY(10px)';
+                searchMenu.style.pointerEvents = 'none';
+            }
+            if (cartMenu && cartToggle && !cartMenu.contains(e.target) && !cartToggle.contains(e.target)) {
+                cartMenu.style.opacity = '0';
+                cartMenu.style.visibility = 'hidden';
+                cartMenu.style.transform = 'translateY(10px)';
+                cartMenu.style.pointerEvents = 'none';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

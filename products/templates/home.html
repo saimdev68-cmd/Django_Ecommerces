@@ -1,501 +1,58 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColorAdmin Navigation</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <link rel="stylesheet" href="{% static "css/style1.css" %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <header class="navbar-container">
-        <div class="navbar-inner">
-            <div class="nav-logo">
-                <a class="logo-icon" href="#"></a>
-                <a class="logo-text" href="#">
-                    <span class="brand-blue">Color</span>Admin
-                    <small>e-commerce frontend theme</small>
-                </a>
-            </div>
-            <nav class="nav-links">
-                <div class="nav-item"><a href="#" class="nav-link active">Home</a></div>             
-                <div class="nav-item has-dropdown" data-dropdown="store">
-                    <a href="#" class="nav-link">Our Store <i class="fa-solid fa-chevron-down arrow"></i></a>                   
-                    <div class="dropdown-menu mega-menu">
-                        <div class="mega-menu-content">
-                            <div class="mega-col category-col">
-                                <h3>Shop By Categories</h3>
-                                <ul>
-                                    {% for category in categories %}
-                                    <li><a href="#">{{category.name}}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>                            
-                            <div class="mega-col main-col">
-                                <h3>Shop By Popular Phone</h3>
-                                <div class="phone-grid">
-                                    <div class="phone-sub-col">
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> iPhone 7</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> iPhone 6s</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> iPhone 6</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> iPhone 5s</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> iPhone 5</a>
-                                    </div>
-                                    <div class="phone-sub-col">
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Galaxy S7</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Galaxy A9</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Galaxy J3</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Galaxy Note 5</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Galaxy S7</a>
-                                    </div>
-                                    <div class="phone-sub-col">
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Lumia 730</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Lumia 735</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Lumia 830</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Lumia 820</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Lumia Icon</a>
-                                    </div>
-                                    <div class="phone-sub-col">
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Xperia X</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Xperia Z5</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Xperia M5</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Xperia C5</a>
-                                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Xperia C4</a>
-                                    </div>
-                                </div>
-                                <div class="brand-divider"></div>
-                                <h3>Shop By Brand</h3>
-                                <div class="brand-logos">
-                                    {% for brand in brands %}
-                                    {% if brand.logo %}
-                                    <img src="{{brand.logo.url}}" width="10" height="10" alt="{{brand.name}}">
-                                    {% else %}
-                                    <p>{{brand.name}}</p>
-                                    {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
+{% extends "base.html" %}
+
+{% block title %}
+E-Commerce Home
+{% endblock  %}
+
+{% block content %}
+<section class="hero-slider-section">
+    <div class="slider-wrapper">
+        
+        {% for slider in sliders %}
+        <div class="slide-item {% if forloop.first %}active{% endif %}" style="background-image: url('{{ slider.image.url }}');">
+            <div class="slide-container">
+                <div class="slide-content-box">
+                    <h2 class="slide-product-title">{{ slider.product.name }}</h2>
+                    <div class="slide-product-desc">
+                        {{ slider.product.short_description|linebreaks }}
                     </div>
-                </div>
-                <div class="nav-item has-dropdown" data-dropdown="accessories">
-                    <a href="#" class="nav-link">Accessories <i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="dropdown-menu standard-dropdown">
-                        <ul>
-                            {% for category in categories %}
-                            <li><a href="#">{{category.name}}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                <div class="nav-item"><a href="#" class="nav-link">New Arrival</a></div>
-                <div class="nav-item has-dropdown" data-dropdown="pages">
-                    <a href="#" class="nav-link">Pages <i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="dropdown-menu standard-dropdown">
-                        <ul>
-                            <li><a href="#">Home (Default)</a></li>
-                            <li><a href="#">Home (Fixed Header)</a></li>
-                            <li><a href="#">Home (Inverse Header)</a></li>
-                            <li><a href="#">Search Results</a></li>
-                            <li><a href="#">Product Page</a></li>
-                            <li><a href="#">Product Details Page</a></li>
-                            <li><a href="#">Checkout Cart</a></li>
-                            <li><a href="#">Checkout Shipping</a></li>
-                            <li><a href="#">Checkout Payment</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div class="nav-actions">                
-                <div class="action-item has-dropdown" data-dropdown="search">
-                    <button class="action-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <div class="dropdown-menu search-dropdown">
-                        <div class="search-box-container">
-                            <input type="text" placeholder="Search" class="search-input">
-                            <button class="search-submit-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-item has-dropdown" data-dropdown="cart">
-                    <button class="action-btn cart-trigger">
-                        <i class="fa-solid fa-bag-shopping bag-icon"></i>
-                        <span class="cart-badge">2</span>
-                    </button>                   
-                    <div class="dropdown-menu cart-dropdown">
-                        <div class="cart-header">Shopping Bag (1)</div>
-                        <div class="cart-items-list">                           
-                            <div class="cart-item">
-                                <img src="https://via.placeholder.com/60x60?text=iPad" alt="iPad Pro" class="cart-img">
-                                <div class="cart-item-details">
-                                    <h4>iPad Pro Wi-Fi 128GB - Silver</h4>
-                                    <span class="cart-item-price">$699.00</span>
-                                </div>
-                                <button class="cart-item-remove"><i class="fa-solid fa-xmark"></i></button>
-                            </div>
-                            <div class="cart-item">
-                                <img src="https://via.placeholder.com/60x60?text=iMac" alt="iMac" class="cart-img">
-                                <div class="cart-item-details">
-                                    <h4>21.5-inch iMac</h4>
-                                    <span class="cart-item-price">$1299.00</span>
-                                </div>
-                                <button class="cart-item-remove"><i class="fa-solid fa-xmark"></i></button>
-                            </div>
-                            <div class="cart-item">
-                                <img src="https://via.placeholder.com/60x60?text=iPhone" alt="iPhone 6s" class="cart-img">
-                                <div class="cart-item-details">
-                                    <h4>iPhone 6s 16GB - Silver</h4>
-                                    <span class="cart-item-price">$649.00</span>
-                                </div>
-                                <button class="cart-item-remove"><i class="fa-solid fa-xmark"></i></button>
-                            </div>
-                        </div>
-                        <div class="cart-footer-actions">
-                            <a href="#" class="btn-view-cart">View Cart</a>
-                            <a href="#" class="btn-checkout">Checkout</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-divider"></div>
-                <div class="action-item">
-                    {% if user.is_authenticated %}
-                    <a href="#" class="profile-link">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop" alt="Profile" class="profile-avatar">
-                    </a>
-                    {% else %}
-                    <a href="#" class="login-link">Login</a>
-                    {% endif %}
+                    <p class="slide-product-price">from <span>${{ slider.product.price }}</span></p>
+                    <a href="#" class="slide-buy-btn">Buy Now</a>
                 </div>
             </div>
         </div>
-    </header>
-    <div class="hero-slider-container">
-        <div class="slider-wrapper">
-            {% for slider in sliders %}
-            <div class="slide-item {% if forloop.first %}active{% endif %}" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ slider.image.url }}');">
-                <div class="slide-inner">
-                    <div class="slide-content">
-                        <h1 class="slide-title">{{ slider.product.name }}</h1>
-                        <p class="slide-desc">{{ slider.product.short_description }}</p>
-                        <div class="slide-price-tag">
-                            <span class="price-lbl">from</span>
-                            <span class="price-val">${{ slider.product.price }}</span>
-                        </div>
-                        <a href="#" class="btn-buy-now">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <button class="slider-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="slider-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
-        <div class="slider-settings-gear">
-            <i class="fa-solid fa-gear"></i>
-        </div>
-        <div class="slider-pagination-dots">
-            {% for slider in sliders %}
-            <span class="dot {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.counter0 }}"></span>
-            {% endfor %}
-        </div>
+        {% endfor %}
+
+        <button class="slider-arrow arrow-prev" aria-label="Previous Slide">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="slider-arrow arrow-next" aria-label="Next Slide">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
     </div>
-    <section class="spotlight-offers-container">
-        <div class="spotlight-header-row">
-            <div class="spotlight-heading-group">
-                <h2 class="spotlight-main-title">Hot Deals</h2>
-                <p class="spotlight-subtitle-text">Flash Sales • Curated Collections Just for You</p>
-            </div>
-            <a href="#" class="spotlight-view-all-btn">Browse Showcase <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        
-        <div class="spotlight-items-stream">
-            {% for product in promotionals %}
-            <div class="spotlight-product-card">            
-                <div class="spotlight-media-canvas">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="spotlight-display-img">                    
-                    <span class="spotlight-discount-tag">Limited Pack</span>
-                </div>
-                <div class="spotlight-info-panel">
-                    <h3 class="spotlight-item-title">{{ product.name }}</h3>
-                    <p class="spotlight-item-snippet">{{ product.short_description }}</p> 
-                    <div class="spotlight-price-stack">
-                        <span class="spotlight-sale-price">${{ product.price }}</span>
-                        <span class="spotlight-retail-price">$999.00</span>
-                    </div>
-                    <a href="#" class="spotlight-action-link">Explore Now</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-    <section id="trending-section" class="trending-section-container">
-        <div class="trending-header-row">
-            <div class="trending-title-group">
-                <h2>Trending Items</h2>
-                <p class="trending-subtitle">Shop and get your favourite items at amazing prices!</p>
-            </div>           
-            <div class="trending-pagination-arrows">
-                {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}#trending-section" class="arrow-btn"><i class="fa-solid fa-chevron-left"></i></a>
-                {% else %}
-                    <span class="arrow-btn disabled"><i class="fa-solid fa-chevron-left"></i></span>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}#trending-section" class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></a>
-                {% else %}
-                    <span class="arrow-btn disabled"><i class="fa-solid fa-chevron-right"></i></span>
-                {% endif %}
-            </div>
-        </div>
-        <div class="trending-products-grid">
-            {% for product in page_obj %}
-            <div class="trending-item-card">               
-                <div class="card-media-canvas">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="trending-product-img">                    
-                    <div class="card-discount-tag">
-                        <span>20% OFF</span>
-                    </div>
-                </div>
-                <div class="card-details-panel">
-                    <h3 class="trending-item-title">{{ product.name }}</h3>
-                    <p class="trending-item-snippet">{{ product.short_description }}</p>                    
-                    <div class="trending-price-stack">
-                        <span class="sale-price-accent">${{ product.price }}</span>
-                        {% if product.old_price %}
-                            <span class="retail-slash-price">${{ product.old_price }}</span>
-                        {% else %}
-                            <span class="retail-slash-price">$999.00</span>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-    {% for category in categories|slice:":2" %}
-    <section class="category-showcase-section">
-        <div class="category-section-header">
-            <div class="category-title-group">
-                <h2>{{ category.name }}</h2>
-                <p class="category-subtitle">Shop and get your favourite {{ category.name|lower }} at amazing prices!</p>
-            </div>
-            <a href="#" class="category-show-all-btn">SHOW ALL</a>
-        </div>
-        <div class="category-columns-wrapper">           
-            <aside class="category-brands-sidebar">
-                <h3 class="sidebar-heading">TOP CATEGORIES</h3>
-                <ul class="brands-navigation-list">
-                    {% for brand in category.brands.all %}
-                    <li>
-                        <a href="#" class="brand-navigation-link">
-                            {{ brand.name }}
-                            <span class="arrow-indicator"><i class="fa-solid fa-chevron-right"></i></span>
-                        </a>
-                    </li>
-                    {% empty %}
-                    <li><span class="no-brands-msg">No brands available</span></li>
-                    {% endfor %}
-                    <li>
-                        <a href="#" class="brand-navigation-link fallback-all-link">
-                            All Brands
-                            <span class="arrow-indicator"><i class="fa-solid fa-chevron-right"></i></span>
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-            <div class="category-products-grid-matrix">
-                {% for product in category.products.all|slice:":6" %}
-                <div class="category-product-item-card">                   
-                    <div class="card-image-container">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-grid-img">                        
-                        <div class="product-grid-discount-badge">
-                            <span>20% OFF</span>
-                        </div>
-                    </div>
-                    <div class="card-text-details-panel">
-                        <h4 class="product-grid-title">{{ product.name }}</h4>
-                        <p class="product-grid-snippet">{{ product.short_description }}</p>                       
-                        <div class="product-grid-price-stack">
-                            <span class="grid-sale-price">${{ product.price }}</span>
-                            {% if product.old_price %}
-                                <span class="grid-retail-price">${{ product.old_price }}</span>
-                            {% else %}
-                                <span class="grid-retail-price">$739.00</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="empty-products-wrapper">
-                    <p>No promotional items currently loaded inside this category partition.</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    {% endfor %}
-    <footer class="theme-main-footer">
-        <div class="footer-props-bar">
-            <div class="props-container">
-                <div class="prop-item">
-                    <span class="prop-icon"><i class="fa-solid fa-truck-fast"></i></span>
-                    <div class="prop-text">
-                        <h4>Free Shipping</h4>
-                        <p>On all orders over $99.00</p>
-                    </div>
-                </div>
-                <div class="prop-item">
-                    <span class="prop-icon"><i class="fa-solid fa-arrow-rotate-left"></i></span>
-                    <div class="prop-text">
-                        <h4>30 Days Return</h4>
-                        <p>Money-back guarantee option</p>
-                    </div>
-                </div>
-                <div class="prop-item">
-                    <span class="prop-icon"><i class="fa-solid fa-headset"></i></span>
-                    <div class="prop-text">
-                        <h4>Support 24/7</h4>
-                        <p>Live dedicated chat assistance</p>
-                    </div>
-                </div>
-                <div class="prop-item">
-                    <span class="prop-icon"><i class="fa-solid fa-shield-halved"></i></span>
-                    <div class="prop-text">
-                        <h4>Secure Payments</h4>
-                        <p>Encrypted checkout processing</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-directory-grid">
-            <div class="directory-container">              
-                <div class="directory-col brand-meta-summary">
-                    <div class="footer-logo-area">
-                        <span class="brand-logo-cube"></span>
-                        <h3>Color<span>Admin</span></h3>
-                    </div>
-                    <p class="brand-pitch">The premium multi-vendor e-commerce template solution built for clean, modern interface management workflows.</p>
-                    <div class="social-links-track">
-                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="directory-col">
-                    <h4>Our Store</h4>
-                    <ul class="directory-links-list">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Latest News</a></li>
-                        <li><a href="#">Store Directory</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Our Brands</a></li>
-                    </ul>
-                </div>
-                <div class="directory-col">
-                    <h4>Customer Care</h4>
-                    <ul class="directory-links-list">
-                        <li><a href="#">Contact Support</a></li>
-                        <li><a href="#">Track Order Status</a></li>
-                        <li><a href="#">Shipping & Delivery</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">FAQs Help Desk</a></li>
-                    </ul>
-                </div>
-                <div class="directory-col newsletter-signup-col">
-                    <h4>Our Newsletter</h4>
-                    <p class="newsletter-sub-text">Subscribe to receive automated alerts regarding dynamic premium product inventory drops.</p>
-                    <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
-                        <input type="email" placeholder="Your Email Address" required class="newsletter-input">
-                        <button type="submit" class="newsletter-submit-btn">JOIN</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="footer-legal-baseline">
-            <div class="legal-container">
-                <p class="copyright-info-text">&copy; 2026 ColorAdmin Frontend Theme. All Rights Reserved.</p>
-                <div class="payment-badges-row">
-                    <span class="payment-badge-icon"><i class="fa-brands fa-cc-visa"></i></span>
-                    <span class="payment-badge-icon"><i class="fa-brands fa-cc-mastercard"></i></span>
-                    <span class="payment-badge-icon"><i class="fa-brands fa-cc-paypal"></i></span>
-                    <span class="payment-badge-icon"><i class="fa-brands fa-cc-apple-pay"></i></span>
-                    <span class="payment-badge-icon"><i class="fa-brands fa-cc-amazon-pay"></i></span>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        const slides = document.querySelectorAll('.slide-item');
-        const dots = document.querySelectorAll('.slider-pagination-dots .dot');
-        const prevBtn = document.querySelector('.arrow-prev');
-        const nextBtn = document.querySelector('.arrow-next');
-        
-        let currentSlide = 0;
-        const slideIntervalTime = 6000; // Auto-advance slide time
-        let slideInterval;
+</section>
 
-        function showSlide(index) {
-            // Remove active class states from all slides/dots
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.slide-item');
+    const prevBtn = document.querySelector('.arrow-prev');
+    const nextBtn = document.querySelector('.arrow-next');
+    let currentIdx = 0;
 
-            // Apply fallback bounds containment
-            if (index >= slides.length) currentSlide = 0;
-            if (index < 0) currentSlide = slides.length - 1;
+    if (slides.length === 0) return;
 
-            // Display current target items
-            slides[currentSlide].classList.add('active');
-            if(dots.length > 0) {
-                dots[currentSlide].classList.add('active');
-            }
-        }
+    function changeSlide(newIndex) {
+        slides[currentIdx].classList.remove('active');
+        currentIdx = (newIndex + slides.length) % slides.length;
+        slides[currentIdx].classList.add('active');
+    }
 
-        function nextSlide() {
-            currentSlide++;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide--;
-            showSlide(currentSlide);
-        }
-
-        // Interactive Click bindings
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetAutoplay();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetAutoplay();
-        });
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                currentSlide = parseInt(e.target.getAttribute('data-slide'));
-                showSlide(currentSlide);
-                resetAutoplay();
-            });
-        });
-
-        // Autoplay Timer Loop
-        function startAutoplay() {
-            slideInterval = setInterval(nextSlide, slideIntervalTime);
-        }
-
-        function resetAutoplay() {
-            clearInterval(slideInterval);
-            startAutoplay();
-        }
-
-        // Initialize Cycle Loop
-        if(slides.length > 0) {
-            startAutoplay();
-        }
-    });
-    </script>
-</body>
-</html>
+    if (nextBtn) nextBtn.addEventListener('click', () => changeSlide(currentIdx + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => changeSlide(currentIdx - 1));
+    
+    // Optional: Automatic slide rotation interval hook
+    setInterval(() => changeSlide(currentIdx + 1), 7000);
+});
+</script>
+{% endblock  %}
