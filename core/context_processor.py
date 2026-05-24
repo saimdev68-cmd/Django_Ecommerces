@@ -1,5 +1,5 @@
 from products.models import Category , Brand , Product
-from django.db.models import Prefetch
+from django.db.models import Prefetch , Count , Q
 
 def all_things(request):
     products = Product.objects.filter(is_published=True)
@@ -11,5 +11,7 @@ def all_things(request):
                 "products",
                 queryset=products
             )
+        ).annotate(
+            total_product = Count("products",filter=Q(products__is_published=True))
         )
     }

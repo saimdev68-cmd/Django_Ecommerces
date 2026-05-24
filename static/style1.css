@@ -135,3 +135,233 @@
     right: 0;
     border-radius: 4px 0 0 4px;
 }
+
+/* Core Grid Containers */
+.promotions-section {
+    width: 100%;
+    padding: 60px 0;
+    background-color: #f8f9fa; /* Light canvas surface */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.promotions-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Header Alignment Layout */
+.promotions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #111827;
+    margin: 0;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.show-all-btn {
+    padding: 8px 16px;
+    border: 1px solid #cbd5e1;
+    text-decoration: none;
+    color: #374151;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.show-all-btn:hover {
+    background-color: #f1f5f9;
+}
+
+/* Master Asymmetric Layout Grid (Perfect 5-Card Matrix) */
+.promotions-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: repeat(2, 240px);
+    gap: 16px;
+}
+
+/* Single Base Component Canvas */
+.promo-card {
+    position: relative;
+    background-color: #1f2937; /* Clean, deep slate card theme surface */
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.card-inner-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Left Card Slot Configuration (Takes full vertical axis) */
+.card-featured {
+    grid-row: span 2;
+    background-color: #23272a; /* Slightly deeper contrast for featured product */
+}
+
+.card-featured .card-inner-content {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-featured .image-block {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 15px;
+    height: 60%;
+}
+
+.card-featured .image-block img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Standard Right Side Cards Layout Configuration */
+.card-standard .card-inner-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.card-standard .text-block {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-standard .image-block {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-standard .image-block img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Shared Micro Typography System */
+.text-block {
+    color: #ffffff; /* Uniform content values */
+    z-index: 2;
+}
+
+.product-name {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+}
+
+.card-standard .product-name {
+    font-size: 1.25rem;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin: 0 0 15px 0;
+    opacity: 0.9;
+}
+
+.product-price span {
+    font-weight: 500;
+}
+
+.product-desc {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.4;
+    opacity: 0.75;
+    margin-bottom: 20px;
+}
+
+/* Outline Interactive Action Trigger */
+.view-more-btn {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.view-more-btn:hover {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Scaling Breakpoints */
+@media (max-width: 992px) {
+    .promotions-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    .card-featured {
+        grid-column: span 2;
+        grid-row: auto;
+    }
+    .card-featured .card-inner-content {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 640px) {
+    .promotions-grid {
+        grid-template-columns: 1fr;
+    }
+    .card-featured {
+        grid-column: span 1;
+    }
+    .card-featured .card-inner-content,
+    .card-standard .card-inner-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .card-standard .text-block, 
+    .card-standard .image-block {
+        width: 100%;
+    }
+    .card-standard .image-block {
+        height: 140px;
+        margin-top: 15px;
+    }
+}

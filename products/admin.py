@@ -31,10 +31,11 @@ class ProductAdmin(admin.ModelAdmin):
         "is_active",
         "is_published"
     ]
-
+    prepopulated_fields = {"slug":("name",)}
     list_filter = [
         "is_active",
         'is_trending',
+        'is_promotional',
         "is_published",
         "category",
         "brand",

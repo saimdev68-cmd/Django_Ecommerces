@@ -1,0 +1,498 @@
+/* Core Page Canvas Track Configurations */
+.catalog-master-container {
+    max-width: 1240px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    align-items: start;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Atmospheric Top Header Banner Module */
+.catalog-hero-banner {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-text-inner h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+}
+
+.hero-text-inner p {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* Left Hand Sidebar Widget Filters UI Elements */
+.catalog-sidebar-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Individual Card Widget Container Box Wrapper */
+.filter-card-widget {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;       /* Lighter border matching your image */
+    border-radius: 8px;              /* Smoother rounded wrapper edges */
+    padding: 24px 20px;
+    box-sizing: border-box;
+}
+
+.widget-title-heading {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1e293b;                  /* Darker title contrast color */
+    letter-spacing: 0.8px;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Form Layout Elements */
+.filter-form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                       /* Increased uniform item spacing gaps */
+}
+
+.form-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #475569;                  /* Balanced charcoal color tone label */
+}
+
+/* Input boxes refinement */
+.filter-form-element input[type="text"],
+.filter-form-element input[type="number"] {
+    width: 100%;
+    padding: 10px 14px;              /* More vertical inner breathing space */
+    border: 1px solid #cbd5e1;       
+    border-radius: 6px;              /* Cleaner rounded input borders */
+    font-size: 0.9rem;
+    color: #0f172a;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #ffffff;
+    transition: border-color 0.15s ease;
+}
+
+.filter-form-element input:focus {
+    border-color: #0097a7;           /* Active focus selection indicator highlights */
+}
+
+.form-row-pricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* 🎯 THE COMPLETED ACTION BUTTON STYLE MATCH */
+.filter-submit-action-btn {
+    width: 100%;
+    padding: 11px 16px;              /* Comfortable padding structure built inside */
+    background-color: #1e293b;     /* Matching your core turquoise brand color block */
+    color: #ffffff;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 6px;              /* Fully matches the input fields' corner shape */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;                        /* Spacing if you add an icon inside the button */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 5px;
+}
+
+.filter-submit-action-btn:hover {
+    background-color: #0f172a;       /* Darker smooth depth shade on hover focus */
+}
+
+.filter-submit-action-btn:active {
+    transform: scale(0.98);          /* Snappy structural click animation response */
+}
+
+/* Category Metric Navigation List Layout Row Items */
+.sidebar-category-list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-item-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    border-bottom: 1px solid #f3f4f6;
+    transition: color 0.15s ease;
+}
+
+.sidebar-category-list-items li:last-child .category-item-link {
+    border-bottom: none;
+}
+
+.category-item-link:hover {
+    color: #0097a7;
+}
+
+.cat-quantity-badge {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+/* Right Side Dashboard Workspace Header Layout Toolbar Blocks */
+
+/* The Main Utility Bar Box Container */
+.catalog-control-utility-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;            /* Centers everything perfectly vertically */
+    background-color: #ffffff;     /* Light gray background matching your image */
+    padding: 12px 20px;             /* Gives the bar internal breathing room */
+    border-radius: 6px;             /* Smooth rounded corners */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #e5e7eb;
+}
+
+/* Left Text Element Adjustment */
+.total-count-indicator {
+    font-size: 0.9rem;
+    color: #4b5563;
+    font-weight: 400;
+}
+
+/* Right Filter Sorting Layout Container */
+.utility-bar-right-side {
+    display: flex;
+    align-items: center;            /* Vertically centers text with the tags */
+    gap: 15px;
+}
+
+.sort-label-txt {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Group container handling the link tabs */
+.sort-links-wrap-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Individual Interactive Links */
+.sort-action-link {
+    font-size: 0.88rem;
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0 15px;                /* Creates clickable button area padding */
+    border-right: 1px solid #cbd5e1; /* Adds the subtle 1px dividing line between words */
+    line-height: 1.2;
+    transition: color 0.15s ease;
+}
+
+/* Removes the dividing line on the very last link element */
+.sort-links-wrap-group .sort-action-link:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+/* Adjusts the first item's padding so it stays aligned close to the label */
+.sort-links-wrap-group .sort-action-link:first-child {
+    padding-left: 0;
+}
+
+/* Hover and Active State Highlights */
+.sort-action-link:hover,
+.sort-action-link.active-link {
+    color: #0097a7;                 /* Matches your signature theme color */
+    font-weight: 600;
+}
+
+/* Connected 3x3 Product Results Showcase Grid Setup Matrix */
+.catalog-products-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0; /* Zero gap tracks prevents background leaks */
+    border-top: 1px solid #e5e7eb;
+    border-left: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+/* Product Dashboard Grid Single Cells Layout */
+.catalog-product-card-cell {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.catalog-product-card-cell:hover {
+    background-color: #fbfcfc;
+    position: relative;
+    z-index: 5;
+    outline: 2px solid #0097a7;
+    outline-offset: -2px; /* Pulls hover accents inward safely */
+}
+
+/* Media Box Holding Frame Constraints */
+.product-media-frame-box {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+
+.media-link-wrap {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.catalog-fluid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Preserves diverse backgrounds without clipping */
+}
+
+/* Absolute Floating Ribbon Badge Tag */
+.discount-badge-ribbon {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+}
+
+/* Description & Pricing Content Details Blocks */
+.product-details-content-box {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.product-title-header-link {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    line-height: 1.35;
+    height: 40px;
+    overflow: hidden;
+}
+
+.product-title-header-link a {
+    color: #111827;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.product-title-header-link a:hover {
+    color: #0097a7;
+}
+
+.product-short-summary-desc {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0 0 14px 0;
+    line-height: 1.45;
+    height: 36px;
+    overflow: hidden;
+}
+
+/* Stacked Pricing Component Matrix Styles */
+.product-pricing-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin-top: auto;
+}
+
+.current-deal-price-txt {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0097a7; /* Teal brand identity indicator color */
+}
+
+.original-striked-price-txt {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+}
+
+/* Empty Catalog Feedback Layout */
+.empty-catalog-message-container {
+    grid-column: span 3;
+    text-align: center;
+    padding: 60px 20px;
+    color: #9ca3af;
+}
+
+.empty-catalog-message-container i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Master Pagination System Component Blocks Configuration */
+.catalog-pagination-navigation-system {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.pagination-buttons-wrap-row {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Base Nav Block Element Formatting */
+.page-ctrl-nav-btn,
+.page-number-link,
+.pagination-ellipsis-spacer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4b5563;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-right: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.page-numbers-numeric-group {
+    display: inline-flex;
+}
+
+.page-number-link {
+    padding: 0 14px;
+}
+
+.page-number-link:last-child {
+    border-right: none;
+}
+
+/* Interactive Link Hover Rules */
+.navigation-trigger-link:hover,
+a.page-number-link:hover {
+    background-color: #f9fafb;
+    color: #0097a7;
+}
+
+/* Active Highlight Numeric Tracking Node Selector */
+.active-numeric-page {
+    background-color: #1e293b;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: default;
+}
+
+.pagination-ellipsis-spacer {
+    color: #9ca3af;
+    cursor: default;
+    background-color: #f9fafb;
+}
+
+/* CRITICAL: Disabled Block Pointer Cursor Setup For Template Elements */
+.template-disabled-btn {
+    color: #cbd5e1;
+    background-color: #f9fafb;
+    cursor: not-allowed; /* ⬅️ Shows block sign cursor on non-interactive loops */
+    pointer-events: none;
+}
+
+.pagination-buttons-wrap-row *:last-child {
+    border-right: none;
+}
+
+/* Responsive Viewport Grid Layout Adapters */
+@media (max-width: 1024px) {
+    .catalog-master-container {
+        grid-template-columns: 1fr;
+    }
+    .catalog-products-showcase-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-products-showcase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .catalog-control-utility-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-products-showcase-grid {
+        grid-template-columns: 1fr;
+    }
+    .pagination-buttons-wrap-row {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

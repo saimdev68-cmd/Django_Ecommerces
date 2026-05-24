@@ -867,3 +867,109 @@ body {
 }
 .secure-text { font-size: 7px; transform: scale(0.95); }
 .secure-expiry { font-size: 6px; color: #e0e0e0; }
+
+/* Container positioned over the main canvas track */
+.django-messages-container {
+    position: absolute;
+    top: 20px; /* Adjust this to float perfectly below your header context */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensures it floats cleanly above slider arrows and content */
+    width: 100%;
+    max-width: 450px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual Toast Box Design */
+.message-toast {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid #cbd5e1; /* Default slate strip border */
+    animation: slideDownFadeIn 0.3s ease-out forwards;
+}
+
+/* Message Text Formatting */
+.msg-text {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+/* Icons and Close Actions styling hooks */
+.msg-icon {
+    margin-right: 12px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.msg-close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.msg-close-btn:hover {
+    color: #334155;
+}
+
+/* Contextual Color Modifier Tags */
+.message-toast.msg-success {
+    border-left-color: #22c55e; /* Green status theme indicator */
+}
+.message-toast.msg-success .msg-icon {
+    color: #22c55e;
+}
+
+.message-toast.msg-error, 
+.message-toast.msg-danger {
+    border-left-color: #ef4444; /* Red status theme indicator */
+}
+.message-toast.msg-error .msg-icon,
+.message-toast.msg-danger .msg-icon {
+    color: #ef4444;
+}
+
+.message-toast.msg-info {
+    border-left-color: #3b82f6; /* Blue informational strip */
+}
+.message-toast.msg-info .msg-icon {
+    color: #3b82f6;
+}
+
+.message-toast.msg-warning {
+    border-left-color: #f59e0b; /* Amber pending/warning indicator */
+}
+.message-toast.msg-warning .msg-icon {
+    color: #f59e0b;
+}
+
+/* Smooth Entrance Transition Animation */
+@keyframes slideDownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

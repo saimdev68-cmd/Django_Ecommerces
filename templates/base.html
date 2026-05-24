@@ -7,6 +7,8 @@
     <title>{% block title %}{% endblock  %}</title>
     <link rel="stylesheet" href="{% static "style.css" %}">
     <link rel="stylesheet" href="{% static "style1.css" %}">
+    <link rel="stylesheet" href="{% static "style2.css" %}">
+    <link rel="stylesheet" href="{% static "style3.css" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -106,7 +108,7 @@
                             <li class="dropdown-item"><a href="#">Home (Fixed Header)</a></li>
                             <li class="dropdown-item"><a href="#">Home (Inverse Header)</a></li>
                             <li class="dropdown-item"><a href="#">Search Results</a></li>
-                            <li class="dropdown-item"><a href="#">Product Page</a></li>
+                            <li class="dropdown-item"><a href="{% url "products:products_list" %}">Product Page</a></li>
                             <li class="dropdown-item"><a href="#">Product Details Page</a></li>
                             <li class="dropdown-item"><a href="#">Checkout Cart</a></li>
                             <li class="dropdown-item"><a href="#">Checkout Shipping</a></li>
@@ -179,6 +181,28 @@
             </div>
         </div>
     </header>
+    {% if messages %}
+        <div class="django-messages-container">
+            {% for message in messages %}
+                <div class="message-toast {% if message.tags %}msg-{{ message.tags }}{% endif %}">
+                    <div class="msg-icon">
+                        {% if message.tags == 'success' %}
+                            <i class="fa-solid fa-circle-check"></i>
+                        {% elif message.tags == 'error' or message.tags == 'danger' %}
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        {% else %}
+                            <i class="fa-solid fa-circle-info"></i>
+                        {% endif %}
+                    </div>
+                    <p class="msg-text">{{ message }}</p>
+                    <button class="msg-close-btn" onclick="this.parentElement.style.display='none';" aria-label="Close message">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% block content %}{% endblock  %}
 
     <footer class="site-footer">

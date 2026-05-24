@@ -15,3 +15,17 @@ class HomeView(generic.TemplateView):
         page_number = self.request.GET.get("page")
         context["page_obj"] = paginator.get_page(page_number)
         return context
+    
+class ProductListView(generic.ListView):
+    template_name = "product_list.html"
+    context_object_name = "products"
+    paginate_by = 9
+
+    def get_queryset(self):
+        queryset = Product.objects.filter(is_published=True).annotate()
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["total_products"] = Product.objects.filter(is_published=True).count()
+        return context

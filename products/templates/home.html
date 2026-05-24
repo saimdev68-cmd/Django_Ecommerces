@@ -29,10 +29,169 @@ E-Commerce Home
         <button class="slider-arrow arrow-next" aria-label="Next Slide">
             <i class="fa-solid fa-chevron-right"></i>
         </button>
+    </div>
+</section>
+
+<section class="promotions-section">
+    <div class="promotions-container">
+        
+        <div class="promotions-header">
+            <div class="header-left">
+                <h2 class="section-title">Exclusive Promotions</h2>
+                <span class="section-subtitle">Special Offers & Featured Items</span>
+            </div>
+            <a href="#" class="show-all-btn">SHOW ALL</a>
+        </div>
+
+        <div class="promotions-grid">
+            {% for product in promotionals %}
+                
+                <div class="promo-card {% if forloop.first %}card-featured{% else %}card-standard{% endif %}" 
+                     style="background-image: url('{{ product.image.url }}');">
+                    
+                    <div class="card-image-overlay">
+                        <div class="text-block">
+                            <h3 class="product-name">{{ product.name }}</h3>
+                            <p class="product-price">from <span>${{ product.price }}</span></p>
+                            <div class="product-desc">
+                                {{ product.short_description|linebreaksbr }}
+                            </div>
+                            <a href="#" class="view-more-btn">View More</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+        </div>
 
     </div>
 </section>
 
+<section id="trending-section" class="trending-products-section">
+    <div class="trending-container">
+        
+        <div class="trending-header">
+            <div class="header-left">
+                <h2 class="section-title">Trending Items</h2>
+                <span class="section-subtitle">Shop and get your favourite items at amazing prices!</span>
+            </div>
+            
+            <div class="trending-pagination-arrows">
+                {% if page_obj.has_previous %}
+                    <a class="arrow-btn" href="?page={{ page_obj.previous_page_number }}#trending-section" aria-label="Previous Page">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                {% else %}
+                    <span class="arrow-btn disabled-btn"><i class="fa-solid fa-chevron-left"></i></span>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    <a class="arrow-btn" href="?page={{ page_obj.next_page_number }}#trending-section" aria-label="Next Page">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                {% else %}
+                    <span class="arrow-btn disabled-btn"><i class="fa-solid fa-chevron-right"></i></span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="trending-products-grid">
+            {% for product in page_obj %}
+                <div class="trending-product-card">
+                    
+                    <div class="product-media-wrap">
+                        <a href="#" class="img-link-block">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="responsive-product-img">
+                        </a>
+                        <span class="promo-discount-badge">20% OFF</span>
+                    </div>
+
+                    <div class="product-info-details">
+                        <h3 class="product-title-heading">
+                            <a href="#">{{ product.name }}</a>
+                        </h3>
+                        <p class="product-short-summary">{{ product.short_description|truncatechars:45 }}</p>
+                        
+                        <div class="product-pricing-row">
+                            <span class="current-deal-price">${{ product.price }}</span>
+                            {% if product.old_price %}
+                                <span class="original-striked-price">${{ product.old_price }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+<div class="categories-showcase-wrapper">
+    {% for category in categories|slice:"0:2" %}
+    <section class="category-block-section">
+        <div class="category-showcase-container">
+            
+            <div class="category-block-header">
+                <div class="header-left">
+                    <h2 class="section-main-title">{{ category.name }}</h2>
+                    <span class="section-subtitle">Shop and get your favourite items at amazing prices!</span>
+                </div>
+                <a href="#" class="show-all-btn">SHOW ALL</a>
+            </div>
+
+            <div class="category-split-layout">
+                
+                <aside class="category-sidebar">
+                    <h3 class="sidebar-title-heading">TOP BRANDS</h3>
+                    <ul class="sidebar-brands-list">
+                        {% for brand in category.brands.all %}
+                            <li class="brand-item-link">
+                                <a href="#">{{ brand.name }}</a>
+                            </li>
+                        {% empty %}
+                            <li class="brand-item-link empty-msg">No brands available</li>
+                        {% endfor %}
+                        
+                        <li class="brand-item-link view-all-link">
+                            <a href="#">All Brands</a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <div class="category-products-grid">
+                    {% for product in category.products.all|slice:":6" %}
+                        <div class="showcase-product-card">
+                            
+                            <div class="product-media-frame">
+                                <a href="#" class="img-anchor">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="showcase-img">
+                                </a>
+                                <span class="promo-percentage-tag">15% OFF</span>
+                            </div>
+
+                            <div class="product-info-canvas">
+                                <h4 class="product-title-anchor">
+                                    <a href="#">{{ product.name }}</a>
+                                </h4>
+                                <p class="product-short-summary">{{ product.short_description|truncatechars:50 }}</p>
+                                
+                                <div class="product-pricing-wrap">
+                                    <span class="deal-current-price">${{ product.price }}</span>
+                                    {% if product.old_price %}
+                                        <span class="deal-original-price">${{ product.old_price }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div> </div>
+    </section>
+    {% endfor %}
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.slide-item');

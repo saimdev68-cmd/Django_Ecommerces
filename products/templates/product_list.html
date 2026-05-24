@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}
+E-commerces Products
+{% endblock %}
+
+{% block content %}
+<section class="catalog-hero-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1468436139062-f60a71c5c892?q=80&w=1200&auto=format&fit=crop');">
+    <div class="hero-text-inner">
+        <h1>All Products</h1>
+        <p>Discover our elite selection of trending innovations and high-end accessories.</p>
+    </div>
+</section>
+
+<div class="catalog-master-container">
+    
+    <aside class="catalog-sidebar-filter">
+        
+        <div class="filter-card-widget">
+            <h3 class="widget-title-heading">FILTER PRODUCTS</h3>
+            <form action="" method="get" class="filter-form-element">
+                <div class="form-input-group">
+                    <label>Search Keyword</label>
+                    <input type="text" name="keyword" placeholder="Searching..." value="{{ request.GET.keyword }}">
+                </div>
+                
+                <div class="form-row-pricing">
+                    <div class="form-input-group">
+                        <label>Min Price</label>
+                        <input type="number" name="min" placeholder="$ Min" value="{{ request.GET.min }}">
+                    </div>
+                    <div class="form-input-group">
+                        <label>Max Price</label>
+                        <input type="number" name="max" placeholder="$ Max" value="{{ request.GET.max }}">
+                    </div>
+                </div>
+                
+                <button type="submit" class="filter-submit-action-btn">Filter Results</button>
+            </form>
+        </div>
+
+        <div class="filter-card-widget">
+            <h3 class="widget-title-heading">TOP CATEGORIES</h3>
+            <ul class="sidebar-category-list-items">
+                {% for category in categories %}
+                    <li>
+                        <a href="#" class="category-item-link">
+                            <span class="cat-name-txt">{{ category.name }}</span>
+                            <span class="cat-quantity-badge">({{ category.total_product }})</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </aside>
+
+    <main class="catalog-results-panel">
+        
+        <div class="catalog-control-utility-bar">
+            <div class="utility-bar-left-side">
+                <span class="total-count-indicator">We found <strong>{{ total_products }}</strong> Products</span>
+            </div>
+            
+            <div class="utility-bar-right-side">
+                <span class="sort-label-txt">Sort By:</span>
+                <div class="sort-links-wrap-group">
+                    <a href="#" class="sort-action-link active-link">Popular</a>
+                    <a href="#" class="sort-action-link">New Arrival</a>
+                    <a href="#" class="sort-action-link">Discount</a>
+                    <a href="#" class="sort-action-link">Price</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="catalog-products-showcase-grid">
+            {% for product in products %}
+                <div class="catalog-product-card-cell">
+                    
+                    <div class="product-media-frame-box">
+                        <a href="#" class="media-link-wrap">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="catalog-fluid-img">
+                        </a>
+                        <span class="discount-badge-ribbon">15% OFF</span>
+                    </div>
+
+                    <div class="product-details-content-box">
+                        <h4 class="product-title-header-link">
+                            <a href="#">{{ product.name }}</a>
+                        </h4>
+                        <p class="product-short-summary-desc">{{ product.short_description|linebreaksbr }}</p>
+                        
+                        <div class="product-pricing-stack">
+                            <span class="current-deal-price-txt">${{ product.price }}</span>
+                            {% if product.old_price %}
+                                <span class="original-striked-price-txt">${{ product.old_price }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            {% empty %}
+                <div class="empty-catalog-message-container">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>No products match your active filtering adjustments. Please reset values and try again.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="catalog-pagination-navigation-system">
+            <div class="pagination-buttons-wrap-row">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-ctrl-nav-btn navigation-trigger-link">Previous</a>
+                {% else %}
+                    <span class="page-ctrl-nav-btn template-disabled-btn">Previous</span>
+                {% endif %}
+
+                <div class="page-numbers-numeric-group">
+                    {% if page_obj.number > 3 %}
+                        <a href="?page=1" class="page-number-link">1</a>
+                        {% if page_obj.number > 4 %}
+                            <span class="pagination-ellipsis-spacer">...</span>
+                        {% endif %}
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                            {% if num == page_obj.number %}
+                                <span class="page-number-link active-numeric-page">{{ num }}</span>
+                            {% else %}
+                                <a href="?page={{ num }}" class="page-number-link">{{ num }}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
+                        {% if page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+                            <span class="pagination-ellipsis-spacer">...</span>
+                        {% endif %}
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="page-number-link">{{ page_obj.paginator.num_pages }}</a>
+                    {% endif %}
+                </div>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-ctrl-nav-btn navigation-trigger-link">Next</a>
+                {% else %}
+                    <span class="page-ctrl-nav-btn template-disabled-btn">Next</span>
+                {% endif %}
+            </div>
+        </div>
+
+    </main>
+</div>
+{% endblock %}
